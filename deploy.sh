@@ -11,6 +11,7 @@ ENTORNO_PRE="pre"
 ENTORNO_PRO="pro"
 RUTA_ENTORNO_PRE="/var/www/html/demo-ci-pre/"
 RUTA_ENTORNO_PRO="/var/www/html/demo-ci-pro/"
+COMPOSER=$(which composer)
 
 #ordenador mac
 if [ $MAC -eq 1 ]; then
@@ -81,7 +82,7 @@ actualizarVendor () {
 
     if [ ! -z "$rutaProyecto" ]; then
         cd $rutaProyecto
-        composer update
+        $COMPOSER update
         echo $mensaje
     fi
 }

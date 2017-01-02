@@ -10,8 +10,8 @@
     use Clases\Numeros;
 
 
-    $a = 25;
-    $b = 25;
+    $a = 7;
+    $b = 19;
 
     $obj = new Numeros();
     $resultado = $obj->sumar($a, $b);
