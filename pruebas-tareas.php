@@ -5,8 +5,15 @@
      * Fecha: 1/1/17 - 18:12
      */
 
-    $numeros = [1,2,3,4,5,7,8,9,10];
+    require 'vendor/autoload.php';
 
-    foreach ($numeros as $index => $numero) {
-        echo "Posición $index = $numero \n";
-    }
+    use Clases\Numeros;
+
+
+    $a = 6;
+    $b = 17;
+
+    $obj = new Numeros();
+    $resultado = $obj->sumar($a, $b);
+
+    echo "La suma de $a + $b = $resultado \n";
