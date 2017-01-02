@@ -1,6 +1,8 @@
 #!/bin/bash
 #echo "`date` Usuario `whoami` inicio el script, opciones: rama $1 en el entorno $2."'\r' >> resultado.log
 
+MAC=1
+
 #constantes
 RAMA_ROLLBACK="rollback"
 RAMA_DEVELOP="develop"
@@ -9,6 +11,12 @@ ENTORNO_PRE="pre"
 ENTORNO_PRO="pro"
 RUTA_ENTORNO_PRE="/var/www/html/demo-ci-pre/"
 RUTA_ENTORNO_PRO="/var/www/html/demo-ci-pro/"
+
+#ordenador mac
+if [ $MAC -eq 1 ]; then
+    RUTA_ENTORNO_PRE="/Users/grace/Sites/demo-ci-pre/"
+    RUTA_ENTORNO_PRO="/Users/grace/Sites/demo-ci-pro/"
+fi
 
 #parametros entrantes
 inputRama=$1
