@@ -19,16 +19,16 @@ inputRama=$1
 inputEntorno=$2
 
 #metodos
-
 # Despliega version en entorno pre
 # @param $inputRama string
 despliegueVersion () {
     rama=$1
-    rutaProyecto=$2
-    mensaje=$3
+    entorno=$2
+    rutaProyecto=$3
+    mensaje=$4
 
     if [ -z $mensaje ]; then
-        mensaje="\033[92mOK. Se ha desplegado $rama en $ENTORNO_PRE"
+        mensaje="\033[92mOK. Se ha desplegado $rama en $entorno"
     fi
 
     if [ ! -z "$rama" ]; then
@@ -40,15 +40,18 @@ despliegueVersion () {
     fi
 }
 
-
-
+# Selecciona un entorno via parametros pasados
+# @param $inputRama string
+# @param $inputEntorno string
 selectEntorno () {
     case $2 in
       $ENTORNO_PRE)
-         despliegueVersion $inputRama $RUTA_ENTORNO_PRE
+         despliegueVersion $inputRama $ENTORNO_PRE $RUTA_ENTORNO_PRE
+         actualizarVendor $RUTA_ENTORNO_PRE
       ;;
       $ENTORNO_PRO)
-         despliegueVersion $inputRama $RUTA_ENTORNO_PRO
+         despliegueVersion $inputRama $ENTORNO_PRO $RUTA_ENTORNO_PRO
+         actualizarVendor $ENTORNO_PRO $RUTA_ENTORNO_PRO
       ;;
       *)
          echo "Opciones invalidas $1 $2:"
@@ -56,7 +59,23 @@ selectEntorno () {
     esac
 }
 
+# Actualiza las librerías de un entorno
+# @param $inputEntorno string
+actualizarVendor () {
+    entorno=$1
+    rutaProyecto=$2
+    mensaje=$3
 
+    if [ -z $mensaje ]; then
+        mensaje="\033[92mOK. Librerías actualizadas en $entorno"
+    fi
+
+    if [ ! -z "$rama" ]; then
+        cd $rutaProyecto
+        composer update
+        echo $mensaje
+    fi
+}
 
 #despliegue en entornos
 selectEntorno $inputRama $inputEntorno
