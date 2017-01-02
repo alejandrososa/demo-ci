@@ -47,7 +47,7 @@ selectEntorno () {
     case $2 in
       $ENTORNO_PRE)
          despliegueVersion $inputRama $ENTORNO_PRE $RUTA_ENTORNO_PRE
-         actualizarVendor $RUTA_ENTORNO_PRE
+         actualizarVendor $ENTORNO_PRE $RUTA_ENTORNO_PRE
       ;;
       $ENTORNO_PRO)
          despliegueVersion $inputRama $ENTORNO_PRO $RUTA_ENTORNO_PRO
@@ -70,7 +70,7 @@ actualizarVendor () {
         mensaje="\033[92mOK. Librerías actualizadas en $entorno"
     fi
 
-    if [ ! -z "$rama" ]; then
+    if [ ! -z "$rutaProyecto" ]; then
         cd $rutaProyecto
         composer update
         echo $mensaje
