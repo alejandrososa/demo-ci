@@ -1,0 +1,21 @@
+{
+  "name": "ci/demo-ci",
+  "description": "Demostración de configuración, ejecución de tests y despliegues en entornos con jenkins",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Alejandro Sosa",
+      "email": "alesjohnson@hotmail.com"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "^5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Clases\\": "Clases/"
+    }
+  }
+}
