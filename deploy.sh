@@ -27,15 +27,20 @@ despliegueVersion () {
     rutaProyecto=$3
     mensaje=$4
 
-    if [ -z $mensaje ]; then
-        mensaje="\033[92mOK. Se ha desplegado $rama en $entorno"
-    fi
-
     if [ ! -z "$rama" ]; then
         cd $rutaProyecto
-        git fetch --all
-        git reset --hard origin/$rama
-        git pull origin $rama
+
+        #rollback o despliegue
+        if [ $rama = $RAMA_ROLLBACK ]; then
+            git reset --hard HEAD~1
+            mensaje="\033[92mOK. Se ha realizado rollback de la $rama en $entorno"
+        else
+            git fetch --all
+            git reset --hard origin/$rama
+            git pull origin $rama
+            mensaje="\033[92mOK. Se ha desplegado $rama en $entorno"
+        fi
+
         echo $mensaje
     fi
 }
